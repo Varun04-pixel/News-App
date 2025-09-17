@@ -13,6 +13,16 @@
   }
 }
 
+.card {
+  border: none !important;
+  transition: all 0.7s ease-in-out;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: scale(1.07);
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

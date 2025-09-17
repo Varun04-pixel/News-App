@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import NewsComp from "./NewsComp";
 
 class Home extends Component {
     render() {
@@ -6,6 +7,7 @@ class Home extends Component {
             <>
                 <div className="container my-3">
                     <h2 className="text-center">Top headlines Today</h2>
+                    <NewsComp />
                 </div>
             </>
         )
