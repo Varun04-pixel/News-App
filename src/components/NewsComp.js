@@ -29,7 +29,7 @@ class NewsComp extends Component {
 
   // For production
   getUrl(page = 1) {
-    const baseUrl = "https://news-backend-aadd.onrender.com/api/news";
+    const baseUrl = "https://news-backend-1-55sk.onrender.com/api/news";
 
     if (this.props.query && this.props.query !== "") {
       return `${baseUrl}?query=${this.props.query}&page=${page}`;
