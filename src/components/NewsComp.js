@@ -18,11 +18,23 @@ class NewsComp extends Component {
     this.fetchNews();
   }
 
+  // For local  machine run
+  // getUrl(page = 1) {
+  //   if (this.props.query && this.props.query !== "") {
+  //     return `https://newsapi.org/v2/everything?q=${this.props.query}&pageSize=${this.state.pageSize}&page=${page}&apiKey=${process.env.REACT_APP_NEWS_API}`;
+  //   } else {
+  //     return `https://newsapi.org/v2/top-headlines?category=${this.props.category}&pageSize=${this.state.pageSize}&page=${page}&apiKey=${process.env.REACT_APP_NEWS_API}`;
+  //   }
+  // }
+
+  // For production
   getUrl(page = 1) {
+    const baseUrl = "https://news-backend-aadd.onrender.com/api/news";
+
     if (this.props.query && this.props.query !== "") {
-      return `https://newsapi.org/v2/everything?q=${this.props.query}&pageSize=${this.state.pageSize}&page=${page}&apiKey=${process.env.REACT_APP_NEWS_API}`;
+      return `${baseUrl}?query=${this.props.query}&page=${page}`;
     } else {
-      return `https://newsapi.org/v2/top-headlines?category=${this.props.category}&pageSize=${this.state.pageSize}&page=${page}&apiKey=${process.env.REACT_APP_NEWS_API}`;
+      return `${baseUrl}?category=${this.props.category}&page=${page}`;
     }
   }
 
@@ -35,7 +47,7 @@ class NewsComp extends Component {
     let data = await fetch(url);
     let result = await data.json();
     this.setState({
-      content: result.articles,
+      content: result.articles || [],
       page,
       loader: false,
       totalResults: result.totalResults,
@@ -70,7 +82,7 @@ class NewsComp extends Component {
     let data = await fetch(url);
     let result = await data.json();
     this.setState({
-      content: this.state.content.concat(result.articles),
+      content: this.state.content.concat(result.articles || []),
       page: this.state.page + 1,
       loader: false,
       totalResults: result.totalResults,
