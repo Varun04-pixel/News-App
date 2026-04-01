@@ -19,24 +19,24 @@ class NewsComp extends Component {
   }
 
   // For local  machine run
-  // getUrl(page = 1) {
-  //   if (this.props.query && this.props.query !== "") {
-  //     return `https://newsapi.org/v2/everything?q=${this.props.query}&pageSize=${this.state.pageSize}&page=${page}&apiKey=${process.env.REACT_APP_NEWS_API}`;
-  //   } else {
-  //     return `https://newsapi.org/v2/top-headlines?category=${this.props.category}&pageSize=${this.state.pageSize}&page=${page}&apiKey=${process.env.REACT_APP_NEWS_API}`;
-  //   }
-  // }
-
-  // For production
   getUrl(page = 1) {
-    const baseUrl = "https://news-backend-1-55sk.onrender.com/api/news";
-
     if (this.props.query && this.props.query !== "") {
-      return `${baseUrl}?query=${this.props.query}&page=${page}`;
+      return `https://newsapi.org/v2/everything?q=${this.props.query}&pageSize=${this.state.pageSize}&page=${page}&apiKey=${process.env.REACT_APP_NEWS_API}`;
     } else {
-      return `${baseUrl}?category=${this.props.category}&page=${page}`;
+      return `https://newsapi.org/v2/top-headlines?category=${this.props.category}&pageSize=${this.state.pageSize}&page=${page}&apiKey=${process.env.REACT_APP_NEWS_API}`;
     }
   }
+
+  // For production
+  // getUrl(page = 1) {
+  //   const baseUrl = "https://news-backend.onrender.com/api/news";
+
+  //   if (this.props.query && this.props.query !== "") {
+  //     return `${baseUrl}?query=${this.props.query}&page=${page}`;
+  //   } else {
+  //     return `${baseUrl}?category=${this.props.category}&page=${page}`;
+  //   }
+  // }
 
   async fetchNews(page = 1) {
     this.setState({
